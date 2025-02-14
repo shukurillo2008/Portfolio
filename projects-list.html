@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                colors: {
+                    'text': '#e4ece4',
+                    'background': '#0a100a',
+                    'primary': '#a2c8a2',
+                    'secondary': '#396638',
+                    'accent': '#5ead5c',
+                },
+                fontSize: {
+                    sm: '0.750rem',
+                    base: '1rem',
+                    xl: '1.333rem',
+                    '2xl': '1.777rem',
+                    '3xl': '2.369rem',
+                    '4xl': '3.158rem',
+                    '5xl': '4.210rem',
+                },
+                fontFamily: {
+                    heading: ['Space Grotesk', 'sans-serif'],
+                    body: ['Inter', 'sans-serif'],
+                }
+            }
+        }
+    </script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-background text-text font-body">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-background/70 backdrop-blur-md border-b border-secondary/10"></div>
+        
+        <!-- Content -->
+        <div class="relative container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="index.html" class="relative group">
+                    <span class="text-2xl font-heading font-semibold bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">
+                        JD<span class="text-accent">.</span>
+                    </span>
+                    <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-12">
+                    <a href="./index.html#contact" class="relative group py-2 text-text/80 hover:text-accent transition-colors">
+                        <span>Contact</span>
+
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden relative z-10 text-text/80 hover:text-accent transition-colors" id="menuButton">
+                    <span class="sr-only">Open menu</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-background/95 backdrop-blur-lg z-50 transform translate-x-full transition-transform duration-500" id="mobileMenu">
+        <!-- Mobile menu content similar to index.html -->
+    </div>
+
+    <!-- Projects Header -->
+    <header class="pt-32 pb-16 relative overflow-hidden">
+        <div class="sparkles-overlay">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="font-heading text-4xl mb-6">My Projects</h1>
+                <div class="h-1 w-20 bg-accent mx-auto mb-8"></div>
+                <p class="text-xl text-text/70">
+                    A comprehensive collection of my backend development work and technical projects
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Grid -->
+    <main class="py-16">
+        <div class="container mx-auto px-4">
+            <!-- Filter Categories -->
+            <div class="max-w-7xl mx-auto mb-12">
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button class="px-6 py-2 rounded-full bg-accent text-background inline-flex items-center gap-2">
+                        All Projects
+                        <span class="px-2 py-0.5 bg-background/20 rounded-full text-sm">15</span>
+                    </button>
+                    <button class="px-6 py-2 rounded-full bg-secondary/10 hover:bg-accent hover:text-background transition-colors inline-flex items-center gap-2">
+                        Backend
+                        <span class="px-2 py-0.5 bg-accent/10 rounded-full text-sm">8</span>
+                    </button>
+                    <button class="px-6 py-2 rounded-full bg-secondary/10 hover:bg-accent hover:text-background transition-colors inline-flex items-center gap-2">
+                        API Development
+                        <span class="px-2 py-0.5 bg-accent/10 rounded-full text-sm">5</span>
+                    </button>
+                    <button class="px-6 py-2 rounded-full bg-secondary/10 hover:bg-accent hover:text-background transition-colors inline-flex items-center gap-2">
+                        Database
+                        <span class="px-2 py-0.5 bg-accent/10 rounded-full text-sm">4</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects -->
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card 2 -->
+                <div class="group relative animate-fade-in" style="animation-delay: 200ms;">
+                    <div class="relative rounded-xl overflow-hidden border border-secondary/20 bg-secondary/5 backdrop-blur-sm">
+                        <img src="https://placehold.co/800x600" alt="Project 2" 
+                             class="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <div class="flex items-center gap-2 text-accent mb-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                    <span class="text-sm">Real-time System</span>
+                                </div>
+                                <h3 class="text-2xl font-heading mb-3">Chat Application</h3>
+                                <p class="text-text/70 mb-4">
+                                    Real-time messaging platform using Django Channels and WebSockets.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django Channels</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">WebSocket</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Redis</span>
+                                </div>
+                                <a href="./project-detail.html" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                    View Project
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative animate-fade-in" style="animation-delay: 200ms;">
+                    <div class="relative rounded-xl overflow-hidden border border-secondary/20 bg-secondary/5 backdrop-blur-sm">
+                        <img src="https://placehold.co/800x600" alt="Project 2" 
+                             class="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <div class="flex items-center gap-2 text-accent mb-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                    <span class="text-sm">Real-time System</span>
+                                </div>
+                                <h3 class="text-2xl font-heading mb-3">Chat Application</h3>
+                                <p class="text-text/70 mb-4">
+                                    Real-time messaging platform using Django Channels and WebSockets.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django Channels</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">WebSocket</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Redis</span>
+                                </div>
+                                <a href="./project-detail.html" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                    View Project
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="group relative animate-fade-in" style="animation-delay: 300ms;">
+                    <div class="relative rounded-xl overflow-hidden border border-secondary/20 bg-secondary/5 backdrop-blur-sm">
+                        <img src="https://placehold.co/800x600" alt="Project 2" 
+                             class="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <div class="flex items-center gap-2 text-accent mb-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                    <span class="text-sm">Real-time System</span>
+                                </div>
+                                <h3 class="text-2xl font-heading mb-3">Chat Application</h3>
+                                <p class="text-text/70 mb-4">
+                                    Real-time messaging platform using Django Channels and WebSockets.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django Channels</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">WebSocket</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Redis</span>
+                                </div>
+                                <a href="./project-detail.html" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                    View Project
+
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative animate-fade-in" style="animation-delay: 300ms;">
+                    <div class="relative rounded-xl overflow-hidden border border-secondary/20 bg-secondary/5 backdrop-blur-sm">
+                        <img src="https://placehold.co/800x600" alt="Project 2" 
+                             class="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <div class="flex items-center gap-2 text-accent mb-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                    <span class="text-sm">Real-time System</span>
+                                </div>
+                                <h3 class="text-2xl font-heading mb-3">Chat Application</h3>
+                                <p class="text-text/70 mb-4">
+                                    Real-time messaging platform using Django Channels and WebSockets.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django Channels</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">WebSocket</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Redis</span>
+                                </div>
+                                <a href="./project-detail.html" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                    View Project
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative animate-fade-in" style="animation-delay: 300ms;">
+                    <div class="relative rounded-xl overflow-hidden border border-secondary/20 bg-secondary/5 backdrop-blur-sm">
+                        <img src="https://placehold.co/800x600" alt="Project 2" 
+                             class="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <div class="flex items-center gap-2 text-accent mb-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                    <span class="text-sm">Real-time System</span>
+                                </div>
+                                <h3 class="text-2xl font-heading mb-3">Chat Application</h3>
+                                <p class="text-text/70 mb-4">
+                                    Real-time messaging platform using Django Channels and WebSockets.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django Channels</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">WebSocket</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Redis</span>
+                                </div>
+                                <a href="./project-detail.html" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                    View Project
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group relative animate-fade-in" style="animation-delay: 300ms;">
+                    <div class="relative rounded-xl overflow-hidden border border-secondary/20 bg-secondary/5 backdrop-blur-sm">
+                        <img src="https://placehold.co/800x600" alt="Project 2" 
+                             class="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute bottom-0 left-0 right-0 p-6">
+                                <div class="flex items-center gap-2 text-accent mb-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                    <span class="text-sm">Real-time System</span>
+                                </div>
+                                <h3 class="text-2xl font-heading mb-3">Chat Application</h3>
+                                <p class="text-text/70 mb-4">
+                                    Real-time messaging platform using Django Channels and WebSockets.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-6">
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django Channels</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">WebSocket</span>
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Redis</span>
+                                </div>
+                                <a href="./project-detail.html" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                    View Project
+                                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Stats -->
+            <div class="max-w-7xl mx-auto mt-20 mb-12">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 text-center">
+                        <div class="text-3xl font-heading text-accent mb-2">15+</div>
+                        <div class="text-sm text-text/60">Total Projects</div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 text-center">
+                        <div class="text-3xl font-heading text-accent mb-2">8</div>
+                        <div class="text-sm text-text/60">Open Source</div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 text-center">
+                        <div class="text-3xl font-heading text-accent mb-2">12</div>
+                        <div class="text-sm text-text/60">Completed</div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 text-center">
+                        <div class="text-3xl font-heading text-accent mb-2">3</div>
+                        <div class="text-sm text-text/60">In Progress</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-16">
+                <button class="px-8 py-3 bg-accent/10 text-accent border border-accent/20 rounded-lg hover:bg-accent/20 transition-colors">
+                    Load More Projects
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-secondary/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>© 2024 All rights reserved</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-accent transition-colors">GitHub</a>
+                    <a href="#" class="hover:text-accent transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-accent transition-colors">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

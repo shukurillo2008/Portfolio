@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                colors: {
+                    'text': '#e4ece4',
+                    'background': '#0a100a',
+                    'primary': '#a2c8a2',
+                    'secondary': '#396638',
+                    'accent': '#5ead5c',
+                },
+                fontSize: {
+                    sm: '0.750rem',
+                    base: '1rem',
+                    xl: '1.333rem',
+                    '2xl': '1.777rem',
+                    '3xl': '2.369rem',
+                    '4xl': '3.158rem',
+                    '5xl': '4.210rem',
+                },
+                fontFamily: {
+                    heading: ['Space Grotesk', 'sans-serif'],
+                    body: ['Inter', 'sans-serif'],
+                }
+            }
+        }
+    </script>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-background text-text font-body">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-background/70 backdrop-blur-md border-b border-secondary/10"></div>
+        
+        <!-- Content -->
+        <div class="relative container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="#" class="relative group">
+                    <span class="text-2xl font-heading font-semibold bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">
+                        JD<span class="text-accent">.</span>
+                    </span>
+                    <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-12">
+                    <a href="#about" class="relative group py-2 text-text/80 hover:text-accent transition-colors">
+                        <span>About</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <a href="#tech-stack" class="relative group py-2 text-text/80 hover:text-accent transition-colors">
+                        <span>Tech Stack</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <a href="#stats" class="relative group py-2 text-text/80 hover:text-accent transition-colors">
+                        <span>Stats</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <a href="#work" class="relative group py-2 text-text/80 hover:text-accent transition-colors">
+                        <span>Work</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <a href="#contact" class="relative group py-2 text-text/80 hover:text-accent transition-colors">
+                        <span>Contact</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <a href="/path-to-your-resume.pdf" 
+                       class="px-5 py-2 bg-accent/10 text-accent border border-accent/20 rounded-lg hover:bg-accent/20 transition-colors text-sm font-medium"
+                       download>
+                        Resume
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden relative z-10 text-text/80 hover:text-accent transition-colors" id="menuButton">
+                    <span class="sr-only">Open menu</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path class="origin-center transition-all" 
+                              stroke-linecap="round" 
+                              stroke-linejoin="round" 
+                              stroke-width="2" 
+                              d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-background/95 backdrop-blur-lg z-50 transform translate-x-full transition-transform duration-500" id="mobileMenu">
+        <div class="flex flex-col items-center justify-center min-h-screen gap-8 px-4">
+            <button class="absolute top-6 right-6 text-text/60 hover:text-accent transition-colors" id="closeMenu">
+                <span class="sr-only">Close menu</span>
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <nav class="flex flex-col items-center gap-8">
+                <a href="#about" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">
+                    <span>About</span>
+                </a>
+                <a href="#tech-stack" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">
+                    <span>Tech Stack</span>
+                </a>
+                <a href="#stats" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">
+                    <span>Stats</span>
+                </a>
+                <a href="#work" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">
+                    <span>Work</span>
+                </a>
+                <a href="#contact" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">
+                    <span>Contact</span>
+                </a>
+            </nav>
+            
+            <div class="mt-8">
+                <a href="/path-to-your-resume.pdf" 
+                   class="px-8 py-3 bg-accent/10 text-accent border border-accent/20 rounded-lg hover:bg-accent/20 transition-colors text-lg font-medium"
+                   download>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen relative overflow-hidden pt-16">
+        <!-- Animated background -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#396638_0%,_#0a100a_100%)] opacity-30"></div>
+            <div class="absolute inset-0 bg-background/50 backdrop-blur-sm"></div>
+            <!-- Binary/Code pattern overlay -->
+            <div class="absolute inset-0 opacity-5">
+                <div class="animate-matrix-fall text-xs leading-none whitespace-nowrap">
+                    01 10 11 00 01 10 11 00 01 10 11 00
+                </div>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
+            <div class="text-center max-w-4xl mx-auto">
+                <!-- Profile image with animation -->
+                <div class="mb-8 relative">
+                    <div class="w-32 h-32 mx-auto rounded-full relative animate-float">
+                        <!-- Image container -->
+                        <div class="relative w-full h-full rounded-full border-4 border-accent/30 p-1">
+                            <div class="w-full h-full rounded-full border-4 border-primary/30 overflow-hidden">
+                                <img src="https://placehold.co/200x200" alt="Profile" 
+                                     class="w-full h-full object-cover rounded-full transform transition-transform duration-500 hover:scale-110">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Status badge -->
+                    <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-accent text-background px-4 py-1 rounded-full text-sm animate-bounce-slow">
+                        Open to Opportunities
+                    </div>
+                </div>
+
+                <!-- Text content -->
+                <h1 class="font-heading text-5xl mb-6 tracking-tight">
+                    <span class="block text-xl text-primary mb-2">Hello, I'm</span>
+                    John Doe
+                    <span class="block text-2xl text-accent/90 mt-2">Django Backend Developer</span>
+                </h1>
+                
+                <p class="text-xl text-text/80 mb-8 max-w-2xl mx-auto leading-relaxed">
+                    Crafting robust web applications with Django and Python. 
+                    Specialized in building scalable APIs, database optimization, and secure authentication systems.
+                </p>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row justify-center gap-4 items-center mb-12">
+                    <a href="#work" class="group bg-accent hover:bg-accent/90 text-background px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2">
+                        View Projects
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                        </svg>
+                    </a>
+                    <a href="/path-to-your-resume.pdf" class="group border-2 border-primary text-primary hover:bg-primary/10 px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2" download>
+                        Download Resume
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex justify-center items-center gap-6 mb-16">
+                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" 
+                       class="text-text/60 hover:text-accent transition-colors group">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer"
+                       class="text-text/60 hover:text-accent transition-colors group">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer"
+                       class="text-text/60 hover:text-accent transition-colors group">
+                        <span class="sr-only">Twitter</span>
+                        <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:your.email@example.com"
+                       class="text-text/60 hover:text-accent transition-colors group">
+                        <span class="sr-only">Email</span>
+                        <svg class="w-6 h-6 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="min-h-screen py-20 relative overflow-hidden">
+        <div class="sparkles-overlay">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+        <!-- Background decoration -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-20 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-20 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="font-heading text-4xl mb-4">About Me</h2>
+                    <div class="h-1 w-20 bg-accent mx-auto"></div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Column - Image & Stats -->
+                    <div class="space-y-8">
+                        <div class="relative">
+                            <div class="aspect-square rounded-2xl overflow-hidden border-2 border-secondary/20 p-1">
+                                <img src="https://placehold.co/600x600" alt="Profile" class="rounded-2xl object-cover w-full h-full">
+                                <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent"></div>
+                            </div>
+                            <!-- Experience Badge -->
+                            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-accent text-background px-6 py-2 rounded-full text-sm font-medium">
+                                5+ Years Experience
+                            </div>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-2 gap-4 mt-12">
+                            <div class="text-center p-4 rounded-xl bg-secondary/5 backdrop-blur-sm">
+                                <div class="text-3xl font-heading text-accent mb-1">20+</div>
+                                <div class="text-sm text-text/60">Projects Completed</div>
+                            </div>
+                            <div class="text-center p-4 rounded-xl bg-secondary/5 backdrop-blur-sm">
+                                <div class="text-3xl font-heading text-accent mb-1">15+</div>
+                                <div class="text-sm text-text/60">Happy Clients</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Text Content -->
+                    <div class="space-y-8">
+                        <div class="prose prose-invert">
+                            <p class="text-xl font-light leading-relaxed text-text/80">
+                                Backend developer specializing in building robust and scalable server architectures. I transform complex business requirements into efficient, maintainable code.
+                            </p>
+                        </div>
+
+                        <!-- Expertise Areas -->
+                        <div class="space-y-6">
+                            <div class="p-4 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <h3 class="text-lg font-medium">Django Development</h3>
+                                </div>
+                                <p class="text-sm text-text/70">Django, DRF, Celery, Django Channels, WebSockets</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                    <h3 class="text-lg font-medium">Database Engineering</h3>
+                                </div>
+                                <p class="text-sm text-text/70">PostgreSQL, Redis, Database Design, ORM Optimization</p>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-colors">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                    </svg>
+                                    <h3 class="text-lg font-medium">DevOps & Deployment</h3>
+                                </div>
+                                <p class="text-sm text-text/70">Docker, AWS, CI/CD, Nginx, Gunicorn</p>
+                            </div>
+                        </div>
+
+                        <!-- Key Focus Areas -->
+                        <div class="grid grid-cols-2 gap-4 mt-8">
+                            <div class="p-4 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-colors">
+                                <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                </svg>
+                                <h3 class="text-lg font-medium mb-1">High Performance</h3>
+                                <p class="text-sm text-text/60">Building fast & efficient systems</p>
+                            </div>
+                            <div class="p-4 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-colors">
+                                <svg class="w-8 h-8 text-accent mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                                <h3 class="text-lg font-medium mb-1">Security First</h3>
+                                <p class="text-sm text-text/60">Implementing robust security measures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="py-20 relative overflow-hidden" id="tech-stack">
+        <div class="sparkles-overlay">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="font-heading text-3xl mb-4">Tech Stack</h2>
+                    <div class="h-1 w-20 bg-accent mx-auto mb-8"></div>
+                    <p class="text-lg text-text/70 max-w-2xl mx-auto">
+                        Technologies I work with to build robust backend solutions
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-all group">
+                        <div class="flex flex-col items-center text-center">
+                            <svg class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16.405 5.501c-.115 0-.193.014-.274.033v.013h.014c.054.104.146.18.214.273.054.107.1.214.154.32l.014-.015c.094-.066.14-.172.14-.333-.04-.047-.046-.046-.094-.08-.14-.04-.067-.126-.1-.18-.153zM5.77 18.695h-.927a50.854 50.854 0 00-.27-4.41h-.008l-1.41 4.41H2.45l-1.4-4.41h-.01a72.892 72.892 0 00-.195 4.41H0c.055-1.966.192-3.81.41-5.53h1.15l1.335 4.064h.008l1.347-4.064h1.095c.242 2.015.384 3.86.428 5.53zm4.017-4.08c-.378 2.045-.876 3.533-1.492 4.46-.482.716-1.01 1.073-1.583 1.073-.153 0-.34-.046-.566-.138v-.494c.11.017.24.026.386.026.268 0 .483-.075.647-.222.197-.18.295-.382.295-.605 0-.155-.077-.47-.23-.944L6.23 14.615h.91l.727 2.36c.164.536.233.91.205 1.123.4-1.064.678-2.227.835-3.483zm12.325 4.08h-2.63v-5.53h.885v4.85h1.745zm-3.32.135l-1.016-.5c.09-.076.177-.158.255-.25.433-.506.648-1.258.648-2.253 0-1.83-.718-2.746-2.155-2.746-.704 0-1.254.232-1.65.697-.43.508-.646 1.256-.646 2.245 0 .972.19 1.686.574 2.14.35.41.877.615 1.583.615.264 0 .506-.033.725-.098l1.325.772.36-.622zM15.5 17.588c-.225-.36-.337-.94-.337-1.736 0-1.393.424-2.09 1.27-2.09.443 0 .77.167.977.5.224.362.336.936.336 1.723 0 1.404-.424 2.108-1.27 2.108-.445 0-.77-.167-.978-.5zm-1.658-.425c0 .47-.172.856-.516 1.156-.344.3-.803.45-1.384.45-.543 0-1.064-.172-1.573-.515l.237-.476c.438.22.833.328 1.19.328.332 0 .593-.073.783-.22a.754.754 0 00.3-.615c0-.33-.23-.61-.648-.845-.845-.213-1.163-.657-1.163-.657-.422-.307-.632-.632-.632-1.177 0-.45.157-.81.47-1.085.315-.278.72-.415 1.22-.415.512 0 .98.136 1.4.41l-.213.476a2.726 2.726 0 00-1.064-.23c-.283 0-.502.068-.654.206a.685.685 0 00-.248.524c0 .328.234.61.666.85.393.215 1.187.67 1.187.67.433.305.648.63.648 1.168zm9.382-5.852c-.535-.014-.95.04-1.297.188-.1.04-.26.04-.274.167.055.053.053.063.14.11.214.08.134.218.313.346.407.14.11.28.216.427.31.26.16.555.255.81.416.145.094.293.213.44.313.073.05.12.14.214.172v-.02c-.046-.06-.06-.147-.105-.214-.067-.067-.134-.127-.2-.193a3.223 3.223 0 00-.695-.675c-.214-.146-.682-.35-.77-.595l-.013-.014c.146-.013.32-.066.46-.106.227-.06.435-.047.67-.106.106-.027.213-.06.32-.094v-.06c-.12-.12-.21-.283-.334-.395a8.867 8.867 0 00-1.104-.823c-.21-.134-.476-.22-.697-.334-.08-.04-.214-.06-.26-.127-.12-.146-.146-.19-.34-.275-.514a17.69 17.69 0 01-.547-1.163c-.12-.262-.193-.523-.34-.763-.69-1.137-1.437-1.826-2.586-2.5-.247-.14-.543-.2-.856-.274-.167-.008-.334-.02-.5-.027-.11-.047-.216-.174-.31-.235-.38-.24-1.364-.76-1.644-.072-.18.434.267.862.422 1.082.115.153.26.328.34.5.047.116.06.235.107.356.106.294.207.622.347.897.073.14.153.287.247.413.054.073.146.107.167.227-.094.136-.1.334-.154.5-.24.757-.146 1.693.194 2.25.107.166.362.534.703.393.3-.12.234-.5.32-.835.02-.08.007-.133.048-.187v.015c.094.188.188.367.274.555.206.328.566.668.667.867.895.16.12.287.328.487.402v-.02h-.015c-.043-.058-.1-.086-.154-.133a3.445 3.445 0 01-.35-.4 8.76 8.76 0 01-.747-1.218c-.11-.21-.202-.436-.29-.643-.04-.08-.04-.2-.107-.24-.1.146-.247.273-.32.453-.127.288-.14.642-.188 1.01-.027.007-.014 0-.027.014-.214-.052-.287-.274-.274-.274-.367-.367-.367-.367-.46-.2-.475-.233-1.238-.06-1.785.047-.14.247-.582.167-.716-.042-.127-.174-.2-.247-.303a2.478 2.478 0 01-.24-.427c-.16-.374-.24-.788-.414-1.162-.08-.173-.22-.354-.334-.513-.127-.18-.267-.307-.368-.52-.033-.073-.08-.194-.027-.274.014-.054.042-.075.094-.09.088-.072.335.022.422.062.247.1.455.194.662.334.094.066.195.193.315.226h.14c.214.047.455.014.655.073.355.114.675.28.962.46a5.953 5.953 0 012.085 2.286c.08.154.115.295.188.455.14.33.313.663.455.982.14.315.275.636.476.897.1.14.502.213.682.286.133.06.34.115.46.188.23.14.454.3.67.454.11.076.443.243.463.378z"/>
+                            </svg>
+                            <span>MySQL</span>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-all group">
+                        <div class="flex flex-col items-center text-center">
+                            <svg class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.134-.666A88.33 88.33 0 010 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/>
+                            </svg>
+                            <h3 class="text-lg font-medium mb-2">Express.js</h3>
+                            <p class="text-sm text-text/60">Web Framework</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-all group">
+                        <div class="flex flex-col items-center text-center">
+                            <svg class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M14.355 8.895C14.355 4.171 22.42.001 22.42.001s-1.05 6.789-8.064 8.894m-6.146 0C.21 6.789-.84 0-.84 0s8.065 4.17 8.065 8.895m6.145 6.21c4.724 0 8.894 8.064 8.894 8.064s-6.789-1.05-8.894-8.064m0-6.21c2.362 0 4.276 1.914 4.276 4.276s-1.914 4.277-4.276 4.277-4.277-1.914-4.277-4.277 1.914-4.276 4.277-4.276M8.21 15.104c-2.362 0-4.277-1.914-4.277-4.277-4.277s1.914-4.276 4.277-4.276c2.362 0 4.276 1.914 4.276 4.276s-1.914 4.277-4.276 4.277m6.146 6.21C12.29 25.79 5.5 24.74 3.395 17.725h10.96v3.59zm-6.146-6.21c0 4.724-8.065 8.894-8.065 8.894s1.05-6.789 8.065-8.894"/>
+                            </svg>
+                            <h3 class="text-lg font-medium mb-2">Node.js</h3>
+                            <p class="text-sm text-text/60">Runtime Environment</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-all group">
+                        <div class="flex flex-col items-center text-center">
+                            <svg class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.134-.666A88.33 88.33 0 010 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/>
+                            </svg>
+                            <h3 class="text-lg font-medium mb-2">Node.js</h3>
+                            <p class="text-sm text-text/60">Runtime Environment</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-all group">
+                        <div class="flex flex-col items-center text-center">
+                            <svg class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.134-.666A88.33 88.33 0 010 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/>
+                            </svg>
+                            <h3 class="text-lg font-medium mb-2">Node.js</h3>
+                            <p class="text-sm text-text/60">Runtime Environment</p>
+                        </div>
+                    </div>
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10 hover:border-accent/20 transition-all group">
+                        <div class="flex flex-col items-center text-center">
+                            <svg class="w-12 h-12 text-accent mb-4 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.134-.666A88.33 88.33 0 010 11.577zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/>
+                            </svg>
+                            <h3 class="text-lg font-medium mb-2">Node.js</h3>
+                            <p class="text-sm text-text/60">Runtime Environment</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 relative overflow-hidden bg-secondary/5" id="stats">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="font-heading text-4xl mb-4">Impact & Performance</h2>
+                    <div class="h-1 w-20 bg-accent mx-auto mb-4"></div>
+                    <p class="text-lg text-text/70 max-w-2xl mx-auto">
+                        Delivering high-performance Django solutions with measurable results
+                    </p>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Uptime Card -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-50"></div>
+                        <div class="relative p-8 rounded-2xl bg-background/40 backdrop-blur-xl border border-secondary/10 hover:border-accent/20 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-4xl font-heading text-accent group-hover:scale-110 transition-transform duration-300">
+                                    99.9<span class="text-2xl">%</span>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-medium mb-2">System Uptime</h3>
+                            <p class="text-sm text-text/60">Ensuring reliable service delivery</p>
+                            <div class="absolute bottom-0 left-0 h-1 bg-accent/50 w-0 group-hover:w-full transition-all duration-500 rounded-b-xl"></div>
+                        </div>
+                    </div>
+
+                    <!-- Response Time Card -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-50"></div>
+                        <div class="relative p-8 rounded-2xl bg-background/40 backdrop-blur-xl border border-secondary/10 hover:border-accent/20 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-4xl font-heading text-accent group-hover:scale-110 transition-transform duration-300">
+                                    50<span class="text-2xl">ms</span>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-medium mb-2">Response Time</h3>
+                            <p class="text-sm text-text/60">Lightning-fast API responses</p>
+                            <div class="absolute bottom-0 left-0 h-1 bg-accent/50 w-0 group-hover:w-full transition-all duration-500 rounded-b-xl"></div>
+                        </div>
+                    </div>
+
+                    <!-- API Calls Card -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-accent/20 to-primary/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-50"></div>
+                        <div class="relative p-8 rounded-2xl bg-background/40 backdrop-blur-xl border border-secondary/10 hover:border-accent/20 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-4xl font-heading text-accent group-hover:scale-110 transition-transform duration-300">
+                                    1M<span class="text-2xl">+</span>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-medium mb-2">Daily API Calls</h3>
+                            <p class="text-sm text-text/60">Handling high-volume requests</p>
+                            <div class="absolute bottom-0 left-0 h-1 bg-accent/50 w-0 group-hover:w-full transition-all duration-500 rounded-b-xl"></div>
+                        </div>
+                    </div>
+
+                    <!-- Projects Card -->
+                    <div class="relative group">
+                        <div class="absolute inset-0 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300 opacity-50"></div>
+                        <div class="relative p-8 rounded-2xl bg-background/40 backdrop-blur-xl border border-secondary/10 hover:border-accent/20 transition-all duration-300">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="text-4xl font-heading text-accent group-hover:scale-110 transition-transform duration-300">
+                                    25<span class="text-2xl">+</span>
+                                </div>
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h3 class="text-lg font-medium mb-2">Django Projects</h3>
+                            <p class="text-sm text-text/60">Successfully delivered</p>
+                            <div class="absolute bottom-0 left-0 h-1 bg-accent/50 w-0 group-hover:w-full transition-all duration-500 rounded-b-xl"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Section -->
+    <section id="work" class="min-h-screen py-20 relative overflow-hidden">
+        <div class="sparkles-overlay">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+        <!-- Background decoration -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-5xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-20">
+                    <h2 class="font-heading text-4xl mb-4">Featured Work</h2>
+                    <div class="h-1 w-20 bg-accent mx-auto mb-8"></div>
+                    <p class="text-xl text-text/70 max-w-2xl mx-auto">
+                        Showcasing some of my best backend architecture and system design work
+                    </p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="space-y-24">
+                    <!-- Project 1 -->
+                    <div class="group relative">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <!-- Project Info -->
+                            <div class="order-2 md:order-1">
+                                <div class="p-6 space-y-6">
+                                    <div class="flex items-center gap-2 text-accent">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                        </svg>
+                                        <span class="text-sm">Django Backend</span>
+                                    </div>
+                                    <h3 class="text-3xl font-heading">E-Learning Platform</h3>
+                                    <p class="text-text/70 leading-relaxed">
+                                        A scalable learning management system built with Django and DRF. Features include real-time video streaming, 
+                                        automated course management, and advanced analytics. Handles 100K+ daily active users.
+                                    </p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django</span>
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">DRF</span>
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Celery</span>
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">PostgreSQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project Visual -->
+                            <div class="order-1 md:order-2">
+                                <div class="relative aspect-[4/3] rounded-xl overflow-hidden border border-secondary/20">
+                                    <img src="https://placehold.co/800x600" alt="Project 1" class="object-cover w-full h-full">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent group-hover:opacity-0 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="group relative">
+                        <div class="grid md:grid-cols-2 gap-8 items-center">
+                            <!-- Project Info -->
+                            <div class="order-2">
+                                <div class="p-6 space-y-6">
+                                    <div class="flex items-center gap-2 text-accent">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7"/>
+                                        </svg>
+                                        <span class="text-sm">Real-time System</span>
+                                    </div>
+                                    <h3 class="text-3xl font-heading">Chat Application</h3>
+                                    <p class="text-text/70 leading-relaxed">
+                                        Real-time messaging platform using Django Channels and WebSockets. Includes group chat, file sharing, 
+                                        and message encryption. Supports 50K+ concurrent connections.
+                                    </p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Django Channels</span>
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">Redis</span>
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">WebSocket</span>
+                                        <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">AWS</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Project Visual -->
+                            <div class="order-1">
+                                <div class="relative aspect-[4/3] rounded-xl overflow-hidden border border-secondary/20">
+                                    <img src="https://placehold.co/800x600" alt="Project 2" class="object-cover w-full h-full">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent group-hover:opacity-0 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- View More Projects -->
+                    <div class="text-center pt-12">
+                        <a href="./projects-list.html" class="inline-flex items-center gap-3 px-8 py-3 border-2 border-accent text-accent hover:bg-accent hover:text-background rounded-lg transition-all duration-300">
+                            View More Projects
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="min-h-screen py-20">
+        <div class="sparkles-overlay">
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+            <div class="sparkle"></div>
+        </div>
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="max-w-4xl mx-auto text-center mb-16">
+                <h2 class="font-heading text-4xl mb-6">Let's Connect</h2>
+                <div class="h-1 w-20 bg-accent mx-auto mb-8"></div>
+                <p class="text-xl text-text/70">Interested in working together? Let's discuss your project.</p>
+            </div>
+
+            <!-- Contact Content -->
+            <div class="max-w-6xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-16">
+                    <!-- Left Side - Social Links -->
+                    <div class="bg-secondary/5 rounded-2xl p-8">
+                        <h3 class="text-2xl font-heading mb-8">Get in Touch</h3>
+                        
+                        <!-- Social Links -->
+                        <div class="space-y-4">
+                            <a href="mailto:your.email@example.com" 
+                               class="flex items-center gap-4 p-4 rounded-xl bg-background/50 hover:bg-background/70 transition-colors group">
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-medium mb-1">Email</h4>
+                                    <p class="text-text/60">your.email@example.com</p>
+                                </div>
+                            </a>
+
+                            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-4 p-4 rounded-xl bg-background/50 hover:bg-background/70 transition-colors group">
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                                    <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-medium mb-1">GitHub</h4>
+                                    <p class="text-text/60">github.com/yourusername</p>
+                                </div>
+                            </a>
+
+                            <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-4 p-4 rounded-xl bg-background/50 hover:bg-background/70 transition-colors group">
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                                    <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-medium mb-1">LinkedIn</h4>
+                                    <p class="text-text/60">linkedin.com/in/yourusername</p>
+                                </div>
+                            </a>
+
+                            <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer"
+                               class="flex items-center gap-4 p-4 rounded-xl bg-background/50 hover:bg-background/70 transition-colors group">
+                                <div class="w-12 h-12 rounded-full bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                                    <svg class="w-6 h-6 text-accent" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-medium mb-1">Twitter</h4>
+                                    <p class="text-text/60">@yourusername</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Side - Contact Form -->
+                    <div class="bg-secondary/5 rounded-2xl p-8">
+                        <h3 class="text-2xl font-heading mb-8">Send a Message</h3>
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Name</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 rounded-lg bg-background/50 border border-secondary/20 focus:border-accent focus:outline-none transition-colors" 
+                                       required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Email</label>
+                                <input type="email" 
+                                       class="w-full px-4 py-3 rounded-lg bg-background/50 border border-secondary/20 focus:border-accent focus:outline-none transition-colors" 
+                                       required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-2">Message</label>
+                                <textarea rows="6" 
+                                          class="w-full px-4 py-3 rounded-lg bg-background/50 border border-secondary/20 focus:border-accent focus:outline-none transition-colors" 
+                                          required></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full bg-accent hover:bg-accent/90 text-background px-8 py-3 rounded-lg transition-colors inline-flex items-center justify-center gap-2">
+                                Send Message
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-secondary/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>© 2024 All rights reserved</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a href="#" class="hover:text-accent transition-colors">GitHub</a>
+                    <a href="#" class="hover:text-accent transition-colors">LinkedIn</a>
+                    <a href="#" class="hover:text-accent transition-colors">Twitter</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
