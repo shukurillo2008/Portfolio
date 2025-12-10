@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ project.title }} - Projects{% endblock %}
+
+{% block content %}
+<header class="pt-32 pb-16 relative overflow-hidden">
+    <!-- Back Button -->
+    <div class="container mx-auto px-4 mb-8">
+        <a href="{% url 'projects_list' %}" class="inline-flex items-center gap-2 text-text/60 hover:text-accent transition-colors group">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"/></svg>
+            Back to Projects
+        </a>
+    </div>
+
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Project Title Section -->
+            <div class="text-center mb-8">
+                <div class="flex items-center justify-center gap-2 text-accent mb-4">
+                    <span>{{ project.category.name }}</span>
+                </div>
+                <h1 class="font-heading text-4xl mb-4">{{ project.title }}</h1>
+                <div class="flex flex-wrap justify-center gap-3 mb-6">
+                    {% for tech in project.technologies.all %}
+                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">{{ tech.name }}</span>
+                    {% endfor %}
+                </div>
+                <div class="flex justify-center gap-4">
+                    {% if project.live_url %}
+                    <a href="{{ project.live_url }}" target="_blank" class="inline-flex items-center gap-2 px-6 py-2 bg-accent text-background rounded-lg hover:bg-accent/90 transition-colors">
+                        Live Demo
+                    </a>
+                    {% endif %}
+                    {% if project.github_url %}
+                    <a href="{{ project.github_url }}" target="_blank" class="inline-flex items-center gap-2 px-6 py-2 border border-accent/20 text-accent rounded-lg hover:bg-accent/10 transition-colors">
+                        View Code
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="py-16">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Gallery -->
+            {% if project.images.all %}
+            <div class="mb-16">
+                <div class="grid grid-cols-2 gap-4">
+                    {% for img in project.images.all %}
+                    <div class="{% if forloop.first %}col-span-2{% endif %} relative aspect-video rounded-xl overflow-hidden border border-secondary/20">
+                        <img src="{{ img.image.url }}" alt="{{ img.alt_text }}" class="w-full h-full object-cover">
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Project Info -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Main Content -->
+                <div class="md:col-span-2 space-y-8">
+                    <section>
+                        <h2 class="text-2xl font-heading mb-4">Project Overview</h2>
+                        <div class="text-text/80 leading-relaxed prose prose-invert">
+                            {{ project.full_description|linebreaks }}
+                        </div>
+                    </section>
+
+                    {% if project.features.all %}
+                    <section>
+                        <h2 class="text-2xl font-heading mb-4">Key Features</h2>
+                        <ul class="space-y-4">
+                            {% for feature in project.features.all %}
+                            <li class="flex items-start gap-3">
+                                <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                                <div>
+                                    <h3 class="font-medium mb-1">{{ feature.title }}</h3>
+                                    <p class="text-text/60">{{ feature.description }}</p>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </section>
+                    {% endif %}
+
+                    {% if project.technical_details.all %}
+                    <section>
+                        <h2 class="text-2xl font-heading mb-4">Technical Details</h2>
+                        <div class="space-y-6">
+                            {% for detail in project.technical_details.all %}
+                            <div>
+                                <h3 class="text-xl font-medium mb-2">{{ detail.title }}</h3>
+                                <div class="text-text/80 prose prose-invert">{{ detail.content|linebreaks }}</div>
+                                {% if detail.code_snippet %}
+                                <pre class="bg-black/50 p-4 rounded-lg overflow-x-auto mt-2 text-sm text-green-400 font-mono"><code>{{ detail.code_snippet }}</code></pre>
+                                {% endif %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </section>
+                    {% endif %}
+                </div>
+
+                <!-- Sidebar -->
+                <div class="space-y-8">
+                    <div class="p-6 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10">
+                        <h3 class="text-xl font-heading mb-4">Project Stats</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center">
+                                <span class="text-text/60">Status</span>
+                                <span class="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm">{{ project.get_status_display }}</span>
+                            </div>
+                            {% if project.duration %}
+                            <div class="flex justify-between items-center">
+                                <span class="text-text/60">Timeline</span>
+                                <span>{{ project.duration }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="flex justify-between items-center">
+                                <span class="text-text/60">Team Size</span>
+                                <span>{{ project.team_size }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

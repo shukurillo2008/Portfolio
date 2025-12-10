@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Section -->
+<header class="min-h-screen relative overflow-hidden pt-16">
+    <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_#396638_0%,_#0a100a_100%)] opacity-30"></div>
+        <div class="absolute inset-0 bg-background/50 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 opacity-5">
+            <div class="animate-matrix-fall text-xs leading-none whitespace-nowrap">01 10 11 00 01 10 11 00</div>
+        </div>
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
+        <div class="text-center max-w-4xl mx-auto">
+            {% if profile.profile_image %}
+            <div class="mb-8 relative">
+                <div class="w-32 h-32 mx-auto rounded-full relative animate-float">
+                    <div class="relative w-full h-full rounded-full border-4 border-accent/30 p-1">
+                        <div class="w-full h-full rounded-full border-4 border-primary/30 overflow-hidden">
+                            <img src="{{ profile.profile_image.url }}" alt="{{ profile.full_name }}" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+                {% if profile.is_available %}
+                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-accent text-background px-4 py-1 rounded-full text-sm animate-bounce-slow">
+                    {{ profile.status_text }}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <h1 class="font-heading text-5xl mb-6 tracking-tight">
+                <span class="block text-xl text-primary mb-2">Hello, I'm</span>
+                {{ profile.full_name }}
+                <span class="block text-2xl text-accent/90 mt-2">{{ profile.title }}</span>
+            </h1>
+            
+            <p class="text-xl text-text/80 mb-8 max-w-2xl mx-auto leading-relaxed">{{ profile.tagline }}</p>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 items-center mb-12">
+                <a href="#work" class="group bg-accent hover:bg-accent/90 text-background px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    View Projects
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                </a>
+                {% if profile.resume_file %}
+                <a href="{% url 'download_resume' %}" class="group border-2 border-primary text-primary hover:bg-primary/10 px-8 py-3 rounded-lg transition-all duration-300 flex items-center gap-2">
+                    Download Resume
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- About Section -->
+<section id="about" class="min-h-screen py-20 relative overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl mb-4">About Me</h2>
+                <div class="h-1 w-20 bg-accent mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="prose prose-invert">
+                        <p class="text-xl font-light leading-relaxed text-text/80">{{ profile.bio|linebreaks }}</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-6">
+                    {% for area in expertise_areas %}
+                    <div class="p-4 rounded-xl bg-secondary/5 backdrop-blur-sm border border-secondary/10">
+                        <div class="flex items-center gap-3 mb-2">
+                            <h3 class="text-lg font-medium">{{ area.title }}</h3>
+                        </div>
+                        <p class="text-sm text-text/70">{{ area.description }}</p>
+                        <div class="mt-2 flex flex-wrap gap-2">
+                            {% for tech in area.get_technologies_list %}
+                            <span class="text-xs bg-accent/10 px-2 py-1 rounded text-accent">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+{% if profile.show_stats %}
+<section class="py-20 relative overflow-hidden bg-secondary/5" id="stats">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {% for stat in statistics %}
+                <div class="relative group p-8 rounded-2xl bg-background/40 backdrop-blur-xl border border-secondary/10 hover:border-accent/20 transition-all duration-300">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-4xl font-heading text-accent">{{ stat.value }}</div>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2">{{ stat.label }}</h3>
+                    <p class="text-sm text-text/60">{{ stat.description }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Work Section -->
+<section id="work" class="min-h-screen py-20 relative overflow-hidden">
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="font-heading text-4xl mb-4">Featured Work</h2>
+                <div class="h-1 w-20 bg-accent mx-auto mb-8"></div>
+            </div>
+
+            <div class="space-y-24">
+                {% for project in featured_projects %}
+                <div class="group relative">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="order-2 {% if forloop.counter|divisibleby:2 %}md:order-2{% else %}md:order-1{% endif %}">
+                            <div class="p-6 space-y-6">
+                                <h3 class="text-3xl font-heading">{{ project.title }}</h3>
+                                <p class="text-text/70 leading-relaxed">{{ project.short_description }}</p>
+                                <div class="flex flex-wrap gap-3">
+                                    {% for tech in project.technologies.all %}
+                                    <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">{{ tech.name }}</span>
+                                    {% endfor %}
+                                </div>
+                                <a href="{% url 'project_detail' project.slug %}" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                    View Details <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="order-1 {% if forloop.counter|divisibleby:2 %}md:order-1{% else %}md:order-2{% endif %}">
+                            <div class="relative aspect-[4/3] rounded-xl overflow-hidden border border-secondary/20">
+                                {% if project.thumbnail %}
+                                <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="object-cover w-full h-full">
+                                {% else %}
+                                <div class="w-full h-full bg-secondary/20 flex items-center justify-center">No Image</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="text-center pt-12">
+                    <a href="{% url 'projects_list' %}" class="inline-flex items-center gap-3 px-8 py-3 border-2 border-accent text-accent hover:bg-accent hover:text-background rounded-lg transition-all duration-300">
+                        View More Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="min-h-screen py-20">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center mb-16">
+            <h2 class="font-heading text-4xl mb-6">Let's Connect</h2>
+        </div>
+
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16">
+                <!-- Info -->
+                <div class="bg-secondary/5 rounded-2xl p-8">
+                    <h3 class="text-2xl font-heading mb-8">Get in Touch</h3>
+                    <div class="space-y-4">
+                        {% if profile.email %}
+                        <a href="mailto:{{ profile.email }}" class="flex items-center gap-4 p-4 rounded-xl bg-background/50 hover:bg-background/70 transition-colors">
+                            <div class="flex-1">
+                                <h4 class="text-lg font-medium mb-1">Email</h4>
+                                <p class="text-text/60">{{ profile.email }}</p>
+                            </div>
+                        </a>
+                        {% endif %}
+                        
+                        {% for link in profile.social_links.all %}
+                        <a href="{{ link.url }}" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-background/50 hover:bg-background/70 transition-colors">
+                            <div class="flex-1">
+                                <h4 class="text-lg font-medium mb-1">{{ link.get_platform_display }}</h4>
+                                <p class="text-text/60">{{ link.username }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Form -->
+                <div class="bg-secondary/5 rounded-2xl p-8">
+                    <h3 class="text-2xl font-heading mb-8">Send a Message</h3>
+                    
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class="p-4 mb-4 rounded bg-accent/20 text-accent">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    <form action="{% url 'contact_submit' %}" method="POST" class="space-y-6">
+                        {% csrf_token %}
+                        {% for field in contact_form %}
+                        <div>
+                            <label class="block text-sm font-medium mb-2">{{ field.label }}</label>
+                            {{ field }}
+                            {% if field.errors %}
+                            <p class="text-red-500 text-sm mt-1">{{ field.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        <button type="submit" class="w-full bg-accent hover:bg-accent/90 text-background px-8 py-3 rounded-lg transition-colors inline-flex items-center justify-center gap-2">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

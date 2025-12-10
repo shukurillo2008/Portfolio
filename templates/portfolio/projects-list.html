@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Projects - {{ profile.full_name }}{% endblock %}
+
+{% block content %}
+<header class="pt-32 pb-16 relative overflow-hidden">
+    <div class="sparkles-overlay">
+        <!-- Sparkles CSS animation applied here -->
+        <div class="sparkle"></div><div class="sparkle"></div><div class="sparkle"></div>
+    </div>
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="font-heading text-4xl mb-6">My Projects</h1>
+            <div class="h-1 w-20 bg-accent mx-auto mb-8"></div>
+            <p class="text-xl text-text/70">A comprehensive collection of my development work</p>
+        </div>
+    </div>
+</header>
+
+<main class="py-16">
+    <div class="container mx-auto px-4">
+        <!-- Filter Categories -->
+        <div class="max-w-7xl mx-auto mb-12">
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="{% url 'projects_list' %}" class="px-6 py-2 rounded-full {% if not current_category %}bg-accent text-background{% else %}bg-secondary/10 hover:bg-accent hover:text-background{% endif %} transition-colors inline-flex items-center gap-2">
+                    All Projects
+                    <span class="px-2 py-0.5 bg-background/20 rounded-full text-sm">{{ project_counts.total }}</span>
+                </a>
+                {% for cat in categories %}
+                <a href="?category={{ cat.slug }}" class="px-6 py-2 rounded-full {% if current_category == cat.slug %}bg-accent text-background{% else %}bg-secondary/10 hover:bg-accent hover:text-background{% endif %} transition-colors inline-flex items-center gap-2">
+                    {{ cat.name }}
+                    <span class="px-2 py-0.5 bg-accent/10 rounded-full text-sm">{{ cat.project_count }}</span>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in projects %}
+            <div class="group relative animate-fade-in">
+                <div class="relative rounded-xl overflow-hidden border border-secondary/20 bg-secondary/5 backdrop-blur-sm">
+                    {% if project.thumbnail %}
+                    <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="w-full aspect-video object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    {% else %}
+                    <div class="w-full aspect-video bg-secondary/20 flex items-center justify-center">No Image</div>
+                    {% endif %}
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent opacity-90 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <div class="flex items-center gap-2 text-accent mb-2">
+                                <span class="text-sm">{{ project.category.name }}</span>
+                            </div>
+                            <h3 class="text-2xl font-heading mb-3">{{ project.title }}</h3>
+                            <p class="text-text/70 mb-4 line-clamp-2">{{ project.short_description }}</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                {% for tech in project.technologies.all|slice:":3" %}
+                                <span class="px-3 py-1 bg-secondary/10 rounded-full text-sm">{{ tech.name }}</span>
+                                {% endfor %}
+                            </div>
+                            <a href="{% url 'project_detail' project.slug %}" class="inline-flex items-center gap-2 text-accent group-hover:text-primary transition-colors">
+                                View Project
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center py-12">
+                <p class="text-xl text-text/60">No projects found in this category.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if is_paginated %}
+        <div class="flex justify-center mt-12 gap-2">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}{% if current_category %}&category={{ current_category }}{% endif %}" class="px-4 py-2 border border-secondary/20 rounded hover:bg-secondary/10">Previous</a>
+            {% endif %}
+            
+            <span class="px-4 py-2 text-accent">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+            
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}{% if current_category %}&category={{ current_category }}{% endif %}" class="px-4 py-2 border border-secondary/20 rounded hover:bg-secondary/10">Next</a>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</main>
+{% endblock %}

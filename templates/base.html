@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Professional Portfolio{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                colors: {
+                    'text': '#e4ece4',
+                    'background': '#0a100a',
+                    'primary': '#a2c8a2',
+                    'secondary': '#396638',
+                    'accent': '#5ead5c',
+                },
+                fontSize: {
+                    sm: '0.750rem',
+                    base: '1rem',
+                    xl: '1.333rem',
+                    '2xl': '1.777rem',
+                    '3xl': '2.369rem',
+                    '4xl': '3.158rem',
+                    '5xl': '4.210rem',
+                },
+                fontFamily: {
+                    heading: ['Space Grotesk', 'sans-serif'],
+                    body: ['Inter', 'sans-serif'],
+                }
+            }
+        }
+    </script>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-background text-text font-body">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50">
+        <div class="absolute inset-0 bg-background/70 backdrop-blur-md border-b border-secondary/10"></div>
+        
+        <div class="relative container mx-auto px-4">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <a href="{% url 'home' %}" class="relative group">
+                    <span class="text-2xl font-heading font-semibold bg-clip-text text-transparent bg-gradient-to-r from-accent to-primary">
+                        {% if profile.full_name %}{{ profile.full_name|slice:":2"|upper }}{% else %}JD{% endif %}<span class="text-accent">.</span>
+                    </span>
+                    <div class="absolute -bottom-1 left-0 w-0 h-0.5 bg-accent group-hover:w-full transition-all duration-300"></div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-12">
+                    <a href="{% url 'home' %}#about" class="relative group py-2 text-text/80 hover:text-accent transition-colors"><span>About</span></a>
+                    <a href="{% url 'projects_list' %}" class="relative group py-2 text-text/80 hover:text-accent transition-colors"><span>Projects</span></a>
+                    <a href="{% url 'home' %}#work" class="relative group py-2 text-text/80 hover:text-accent transition-colors"><span>Featured</span></a>
+                    <a href="{% url 'home' %}#contact" class="relative group py-2 text-text/80 hover:text-accent transition-colors"><span>Contact</span></a>
+
+                    {% if profile.resume_file %}
+                    <a href="{% url 'download_resume' %}" class="px-5 py-2 bg-accent/10 text-accent border border-accent/20 rounded-lg hover:bg-accent/20 transition-colors text-sm font-medium">
+                        Resume
+                    </a>
+                    {% endif %}
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden relative z-10 text-text/80 hover:text-accent transition-colors" id="menuButton">
+                    <span class="sr-only">Open menu</span>
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="fixed inset-0 bg-background/95 backdrop-blur-lg z-50 transform translate-x-full transition-transform duration-500" id="mobileMenu">
+        <div class="flex flex-col items-center justify-center min-h-screen gap-8 px-4">
+            <button class="absolute top-6 right-6 text-text/60 hover:text-accent transition-colors" id="closeMenu">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <nav class="flex flex-col items-center gap-8">
+                <a href="{% url 'home' %}#about" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">About</a>
+                <a href="{% url 'projects_list' %}" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">Projects</a>
+                <a href="{% url 'home' %}#contact" class="text-2xl font-heading text-text/80 hover:text-accent transition-colors">Contact</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-secondary/20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p>&copy; {% now "Y" %} {{ site_settings.copyright_text|default:"All rights reserved" }}</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    {% for link in profile.social_links.all %}
+                    <a href="{{ link.url }}" target="_blank" class="hover:text-accent transition-colors">{{ link.get_platform_display }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
